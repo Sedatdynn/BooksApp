@@ -236,7 +236,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildSocialBtn(Function onTap, AssetImage logo) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap(),
       child: Container(
         height: 60.0,
         width: 60.0,
@@ -282,35 +282,33 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _buildSignupBtn() {
-    return Expanded(
-      child: Container(
-        padding: EdgeInsets.only(left: 90, top: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Center(
-              child: Row(
-                children: [
-                  Text(
-                    'Don\'t have an Account? ',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => SignUp()),
-                        );
-                      },
-                      child: Text("Sign Up"))
-                ],
-              ),
-            )
-          ],
-        ),
+    return Container(
+      padding: EdgeInsets.only(left: 90, top: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Center(
+            child: Row(
+              children: [
+                Text(
+                  'Don\'t have an Account? ',
+                  style: TextStyle(color: Colors.white),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignUp()),
+                      );
+                    },
+                    child: Text("Sign Up"))
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
