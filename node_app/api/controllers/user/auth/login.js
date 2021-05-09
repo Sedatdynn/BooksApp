@@ -1,6 +1,7 @@
 const bcryt = require('bcryptjs');
 const jwt = require('../../../../utils/jwtHelper');
 const {User, userValidate } = require('../../../models/user');
+const { Token } = require("../../../models/token");
 const errorJson = require('../../../../utils/error');
 require('dotenv').config();
 
@@ -43,6 +44,23 @@ module.exports = async (req,res) => {
 
 
     const authorization = await jwt.signAccessToken(user._id);
+    const refreshToken = await  jwt.signRefreshToken(user._id);
+
+
+    await Token.findOneAndUpdate(
+        {userId:user._id},
+        {
+            $set:{
+                refreshToken:refreshToken,
+                status:true,
+                expires:Date.now() + 604800000,
+                createdAt:Date.now(),
+            },
+        }
+    ).catch((err) => {
+        return res.status(500)
+            .json(errorJson(err,"A server error occurred."))
+    });
 
     await User.updateOne(
     { email: req.body.email.trim() },
@@ -53,9 +71,13 @@ module.exports = async (req,res) => {
       .json(
         errorJson(
           err,
-          "An internal server error occurred.",)
+          "An internal server error occurred.")
       );
   });
 
-    return res.status(200).send(authorization)
+    //return res.status(200).send(authorization)
+    return res.status(200).json({
+        token:authorization,
+        refreshToken: refreshToken,
+    })
 };
