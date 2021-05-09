@@ -1,5 +1,6 @@
 import 'package:books_app/screens/login.dart';
 import 'package:flutter/material.dart';
+import 'package:from_css_color/from_css_color.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,7 +12,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        theme: ThemeData(primarySwatch: Colors.teal, primaryColor: Colors.teal),
+        theme: ThemeData(
+          primaryColor: Colors.teal.shade700,
+        ),
         home: LoginPage());
   }
 }

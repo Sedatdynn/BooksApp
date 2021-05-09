@@ -1,5 +1,8 @@
 import 'package:books_app/screens/sign_up.dart';
 import 'package:flutter/material.dart';
+import 'package:from_css_color/from_css_color.dart';
+
+import 'homepage.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -14,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        color: Colors.teal,
+        color: Colors.white10,
         child: ListView(
           children: [
             _buildEmail(),
@@ -39,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
           padding: EdgeInsets.only(top: 80, left: 70),
           child: Text(
             "Welcome to BooksApp",
-            style: TextStyle(color: Colors.white, fontSize: 25),
+            style: TextStyle(color: Colors.grey, fontSize: 25),
           ),
         ),
         Container(
@@ -55,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
           padding: EdgeInsets.all(5),
           alignment: Alignment.centerLeft,
           decoration: BoxDecoration(
-            color: Color(0xFF6CA8F1),
+            color: Colors.teal.shade700,
             borderRadius: BorderRadius.circular(10.0),
             boxShadow: [
               BoxShadow(
@@ -104,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
           alignment: Alignment.centerLeft,
           //decoration: kBoxDecorationStyle,
           decoration: BoxDecoration(
-            color: Color(0xFF6CA8F1),
+            color: Colors.teal.shade700,
             borderRadius: BorderRadius.circular(10.0),
             boxShadow: [
               BoxShadow(
@@ -143,7 +146,7 @@ class _LoginPageState extends State<LoginPage> {
       alignment: Alignment.centerRight,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Colors.blue.shade300,
+          primary: Colors.teal.shade700,
           onPrimary: Colors.white,
           shape: const BeveledRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(5))),
@@ -192,17 +195,23 @@ class _LoginPageState extends State<LoginPage> {
       child: Container(
         padding: EdgeInsets.only(left: 40.0, right: 40.0, top: 30.0),
         child: ElevatedButton(
-          onPressed: () => print('Login Button Pressed'),
-          style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.red),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                      side: BorderSide(color: Colors.blue.shade300)))),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Homepage()),
+            );
+          },
+          style: ElevatedButton.styleFrom(
+            primary: Colors.teal.shade700,
+            onPrimary: Colors.white,
+            shape: const BeveledRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(8)),
+            ),
+          ),
           child: Text(
             'LOGIN',
             style: TextStyle(
-              color: Colors.blue.shade300,
+              color: Colors.white,
               letterSpacing: 1.5,
               fontSize: 18.0,
               fontWeight: FontWeight.bold,
@@ -220,14 +229,14 @@ class _LoginPageState extends State<LoginPage> {
           Text(
             '- OR -',
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.grey,
               fontWeight: FontWeight.w400,
             ),
           ),
           SizedBox(height: 20.0),
           Text(
             'Sign in with',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
           ),
         ],
       ),
@@ -292,12 +301,19 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 Text(
                   'Don\'t have an Account? ',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.grey),
                 ),
                 SizedBox(
                   width: 20,
                 ),
                 ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.teal.shade700,
+                      onPrimary: Colors.white,
+                      shape: const BeveledRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                      ),
+                    ),
                     onPressed: () {
                       Navigator.push(
                         context,

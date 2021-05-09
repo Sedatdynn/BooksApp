@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:from_css_color/from_css_color.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -26,18 +27,28 @@ class _SignUpState extends State<SignUp> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sign Up'),
+        title: Text(
+          'Sign Up',
+          style: TextStyle(color: fromCssColor("#CDC7BE")),
+        ),
       ),
       body: SingleChildScrollView(
         child: Container(
           height: 750,
-          color: Colors.indigo.shade400,
+          color: Colors.white10,
           child: Stepper(
             controlsBuilder: (BuildContext context,
                 {VoidCallback onStepContinue, VoidCallback onStepCancel}) {
               return Row(
                 children: <Widget>[
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.teal.shade700,
+                      onPrimary: Colors.white,
+                      shape: const BeveledRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                      ),
+                    ),
                     onPressed: onStepContinue,
                     child: const Text('continue'),
                   ),
@@ -45,6 +56,13 @@ class _SignUpState extends State<SignUp> {
                     width: 30,
                   ),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.teal.shade700,
+                      onPrimary: Colors.white,
+                      shape: const BeveledRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                      ),
+                    ),
                     onPressed: onStepCancel,
                     child: const Text('Back'),
                   ),
@@ -83,13 +101,13 @@ class _SignUpState extends State<SignUp> {
           key: key0,
           decoration: InputDecoration(
               hintText: "Enter your Username", border: OutlineInputBorder()),
-          validator: (girilenDeger) {
-            if (girilenDeger.length < 6) {
+          validator: (entered) {
+            if (entered.length < 6) {
               return "Please enter at least 6 characters";
             }
           },
-          onSaved: (girilenDeger) {
-            isim = girilenDeger;
+          onSaved: (entered) {
+            isim = entered;
           },
         ),
       ),
@@ -101,34 +119,31 @@ class _SignUpState extends State<SignUp> {
           key: key1,
           decoration: InputDecoration(
               hintText: "Enter your Email", border: OutlineInputBorder()),
-          validator: (girilenDeger) {
-            if (girilenDeger.length < 6 || !girilenDeger.contains("@")) {
-              return "Geçerli mail adresi giriniz";
+          validator: (entered) {
+            if (entered.length < 6 || !entered.contains("@")) {
+              return "Please enter valid e-mail address";
             }
           },
-          onSaved: (girilenDeger) {
-            mail = girilenDeger;
+          onSaved: (entered) {
+            mail = entered;
           },
         ),
       ),
       Step(
-        title: Text("Şifre başlık"),
-        subtitle: Text("Şifre Altbaşlık"),
+        title: Text("Password"),
         state: _stateleriAyarla(2),
         isActive: true,
         content: TextFormField(
           key: key2,
           decoration: InputDecoration(
-              labelText: "ŞifreLabel",
-              hintText: "ŞifreHint",
-              border: OutlineInputBorder()),
-          validator: (girilenDeger) {
-            if (girilenDeger.length < 6) {
-              return "Şifre En az 6 karakter olmalı";
+              hintText: "Enter your Password", border: OutlineInputBorder()),
+          validator: (entered) {
+            if (entered.length < 6) {
+              return "The password should be 6 characters at least!";
             }
           },
-          onSaved: (girilenDeger) {
-            sifre = girilenDeger;
+          onSaved: (entered) {
+            sifre = entered;
           },
         ),
       ),
