@@ -45,22 +45,44 @@ module.exports = async (req,res) => {
 
     const authorization = await jwt.signAccessToken(user._id);
     const refreshToken = await  jwt.signRefreshToken(user._id);
-
-
-    await Token.findOneAndUpdate(
-        {userId:user._id},
-        {
-            $set:{
-                refreshToken:refreshToken,
-                status:true,
-                expires:Date.now() + 604800000,
-                createdAt:Date.now(),
-            },
-        }
-    ).catch((err) => {
-        return res.status(500)
-            .json(errorJson(err,"A server error occurred."))
+    const isExist = await Token.findOne({ userId: user._id }).catch((err) => {
+    return res
+      .status(500)
+      .json(errorJson(err, "A server error occurred."));
     });
+
+    if (isExist) {
+        await Token.findOneAndUpdate(
+      { userId: user._id },
+      {
+        $set: {
+          refreshToken: refreshToken,
+          status: true,
+          expires: Date.now() + 604800000,
+          createdAt: Date.now(),
+        },
+      }
+    ).catch((err) => {
+      return res
+        .status(500)
+        .json(errorJson(err, "A server error occurred."));
+    });
+  }
+    else {
+    const token = new Token({
+      userId: user._id,
+      refreshToken: refreshToken,
+      expires: Date.now() + 604800000,
+      createdAt: Date.now(),
+      status: true,
+    });
+    await token.save().catch((err) => {
+      return res
+        .status(500)
+        .json(errorJson(err, "A server error occurred."));
+    });
+  }
+
 
     await User.updateOne(
     { email: req.body.email.trim() },
