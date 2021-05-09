@@ -1,34 +1,7 @@
 import 'package:books_app/screens/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:from_css_color/from_css_color.dart';
-/*
-class Homepage extends StatefulWidget {
-  @override
-  _HomepageState createState() => _HomepageState();
-}
 
-class _HomepageState extends State<Homepage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'HOMEPAGE',
-          style: TextStyle(color: Colors.white),
-        ),
-      ),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        color: Colors.white,
-        child: ListView(
-          children: [],
-        ),
-      ),
-    );
-  }
-}
-*/
 import 'package:flutter/cupertino.dart';
 
 class Homepage extends StatefulWidget {
