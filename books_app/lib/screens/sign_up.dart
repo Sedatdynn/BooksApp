@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:from_css_color/from_css_color.dart';
 
+import '../services/signupService.dart';
+
 class SignUp extends StatefulWidget {
   @override
   _SignUpState createState() => _SignUpState();
@@ -33,59 +35,72 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Container(
-          height: 750,
-          color: Colors.white10,
-          child: Stepper(
-            controlsBuilder: (BuildContext context,
-                {VoidCallback onStepContinue, VoidCallback onStepCancel}) {
-              return Row(
-                children: <Widget>[
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.teal.shade700,
-                      onPrimary: Colors.white,
-                      shape: const BeveledRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
+        child: Column(
+          children: <Widget>[
+            Stepper(
+              controlsBuilder: (BuildContext context,
+                  {VoidCallback onStepContinue, VoidCallback onStepCancel}) {
+                return Row(
+                  children: <Widget>[
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.teal.shade700,
+                        onPrimary: Colors.white,
+                        shape: const BeveledRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                        ),
                       ),
+                      onPressed: onStepContinue,
+                      child: const Text('continue'),
                     ),
-                    onPressed: onStepContinue,
-                    child: const Text('continue'),
-                  ),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.teal.shade700,
-                      onPrimary: Colors.white,
-                      shape: const BeveledRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                    SizedBox(
+                      width: 30,
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.teal.shade700,
+                        onPrimary: Colors.white,
+                        shape: const BeveledRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                        ),
                       ),
+                      onPressed: onStepCancel,
+                      child: const Text('Back'),
                     ),
-                    onPressed: onStepCancel,
-                    child: const Text('Back'),
-                  ),
-                ],
-              );
-            },
-            currentStep: _aktifStep,
-            steps: tumStepler,
-            onStepContinue: () {
-              setState(() {
-                _ileriButonuKontrolu();
-              });
-            },
-            onStepCancel: () {
-              setState(() {
-                if (_aktifStep > 0) {
-                  _aktifStep--;
-                } else {
-                  _aktifStep = 0;
-                }
-              });
-            },
-          ),
+                  ],
+                );
+              },
+              currentStep: _aktifStep,
+              steps: tumStepler,
+              onStepContinue: () {
+                setState(() {
+                  _ileriButonuKontrolu();
+                });
+              },
+              onStepCancel: () {
+                setState(() {
+                  if (_aktifStep > 0) {
+                    _aktifStep--;
+                  } else {
+                    _aktifStep = 0;
+                  }
+                });
+              },
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  Future<bool> data = UsersignUp(isim, mail, sifre);
+                  if (data != true) {
+                    print("register error");
+                  } else {
+                    print("register success");
+                  }
+                },
+                child: Text("Sign Up"),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.teal.shade700,
+                )),
+          ],
         ),
       ),
     );
@@ -101,6 +116,7 @@ class _SignUpState extends State<SignUp> {
           key: key0,
           decoration: InputDecoration(
               hintText: "Enter your Username", border: OutlineInputBorder()),
+          // ignore: missing_return
           validator: (entered) {
             if (entered.length < 6) {
               return "Please enter at least 6 characters";
@@ -119,6 +135,7 @@ class _SignUpState extends State<SignUp> {
           key: key1,
           decoration: InputDecoration(
               hintText: "Enter your Email", border: OutlineInputBorder()),
+          // ignore: missing_return
           validator: (entered) {
             if (entered.length < 6 || !entered.contains("@")) {
               return "Please enter valid e-mail address";
@@ -137,6 +154,7 @@ class _SignUpState extends State<SignUp> {
           key: key2,
           decoration: InputDecoration(
               hintText: "Enter your Password", border: OutlineInputBorder()),
+          // ignore: missing_return
           validator: (entered) {
             if (entered.length < 6) {
               return "The password should be 6 characters at least!";
