@@ -1,8 +1,7 @@
-import 'package:books_app/screens/sign_up.dart';
+import 'package:books_app/screens/home/homepage.dart';
+import 'package:books_app/screens/register/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:from_css_color/from_css_color.dart';
-
-import 'homepage.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -105,7 +104,6 @@ class _LoginPageState extends State<LoginPage> {
         Container(
           margin: EdgeInsets.only(left: 25, right: 25),
           alignment: Alignment.centerLeft,
-          //decoration: kBoxDecorationStyle,
           decoration: BoxDecoration(
             color: Colors.teal.shade700,
             borderRadius: BorderRadius.circular(10.0),

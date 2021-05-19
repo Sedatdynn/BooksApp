@@ -1,4 +1,4 @@
-import 'package:books_app/screens/sign_up.dart';
+import 'package:books_app/screens/detail/details.dart';
 import 'package:flutter/material.dart';
 import 'package:from_css_color/from_css_color.dart';
 
@@ -101,11 +101,8 @@ class _HomepageState extends State<Homepage> {
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: Colors.black),
-                          indicatorColor: Colors.deepOrange,
+                          indicatorColor: Colors.teal.shade700,
                           indicatorSize: TabBarIndicatorSize.label,
-
-                          //indicator: RoundedRectangleTabIndicator(
-                          //  weight: 2, width: 10, color: Colors.white),
                           tabs: [
                             Tab(
                               child: Container(
@@ -171,6 +168,10 @@ class _HomepageState extends State<Homepage> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DetailScreen()));
                         /*    print('ListView Tapped');
                         Navigator.pushReplacement(
                           context,
@@ -238,34 +239,15 @@ class _HomepageState extends State<Homepage> {
                                 padding: EdgeInsets.only(left: 90),
                                 child: Icon(
                                   Icons.arrow_right_outlined,
-                                )),
+                                ))
                           ],
                         ),
                       ),
                     );
-                  }),
+                  })
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-            backgroundColor: Colors.red,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add_shopping_cart_sharp),
-            label: 'Shopping',
-            backgroundColor: Colors.green,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'Profile',
-            backgroundColor: Colors.purple,
-          ),
-        ],
       ),
     );
   }
