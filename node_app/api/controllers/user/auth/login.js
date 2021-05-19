@@ -84,11 +84,13 @@ module.exports = async (req,res) => {
   }
 
 
-    await User.updateOne(
+    const user_data = await User.updateOne(
     { email: req.body.email.trim() },
     {
       $set: {  lastLogin: Date.now() },
-    }).catch((err) => {return res
+    },{
+        new: true,
+        }).select("email username").catch((err) => {return res
       .status(500)
       .json(
         errorJson(
@@ -101,5 +103,9 @@ module.exports = async (req,res) => {
     return res.status(200).json({
         token:authorization,
         refreshToken: refreshToken,
-    })
+        user:user_data
+    });
 };
+
+// refreshToken endpoint'i yazılcak , flutterda kontrol edilecek tokenler
+// token süresi bittiyse bu endpoint'e istek atılacak..
