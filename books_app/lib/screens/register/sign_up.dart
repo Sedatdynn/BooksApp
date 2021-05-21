@@ -1,7 +1,6 @@
+import 'package:books_app/services/signupService.dart';
 import 'package:flutter/material.dart';
 import 'package:from_css_color/from_css_color.dart';
-
-import '../services/signupService.dart';
 
 class SignUp extends StatefulWidget {
   @override

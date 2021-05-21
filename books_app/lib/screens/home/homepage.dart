@@ -136,17 +136,25 @@ class _HomepageState extends State<Homepage> {
                     physics: BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      return Container(
-                        margin: EdgeInsets.only(right: 1),
-                        height: 210,
-                        width: 150,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(40),
-                            color: Colors.white,
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage('assets/book.jpg'),
-                            )),
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DetailScreen()));
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(right: 1),
+                          height: 210,
+                          width: 150,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(40),
+                              color: Colors.white,
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage('assets/book.jpg'),
+                              )),
+                        ),
                       );
                     }),
               ),
