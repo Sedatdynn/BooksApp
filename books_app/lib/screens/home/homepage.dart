@@ -106,19 +106,19 @@ class _HomepageState extends State<Homepage> {
                           tabs: [
                             Tab(
                               child: Container(
-                                margin: EdgeInsets.only(right: 17, left: 17),
+                                margin: EdgeInsets.only(right: 12, left: 12),
                                 child: Text('New'),
                               ),
                             ),
                             Tab(
                               child: Container(
-                                margin: EdgeInsets.only(right: 17, left: 17),
+                                margin: EdgeInsets.only(right: 12, left: 12),
                                 child: Text('Trending'),
                               ),
                             ),
                             Tab(
                               child: Container(
-                                margin: EdgeInsets.only(right: 17, left: 17),
+                                margin: EdgeInsets.only(right: 12, left: 12),
                                 child: Text('Best Seller'),
                               ),
                             )
