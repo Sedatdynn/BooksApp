@@ -106,6 +106,3 @@ module.exports = async (req,res) => {
         user:user_data
     });
 };
-
-// refreshToken endpoint'i yazılcak , flutterda kontrol edilecek tokenler
-// token süresi bittiyse bu endpoint'e istek atılacak..

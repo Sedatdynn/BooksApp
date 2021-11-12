@@ -18,7 +18,17 @@ function validateUserLogin(user){
     return schema.validate(user);
 }
 
+function validateRefreshToken(data){
+    const schema = Joi.object({
+        refreshToken: Joi().string().min(1).required(),
+        userId: Joi.objectId().required()
+    });
+
+    return schema.validate(data);
+}
+
 module.exports = {
     register:validateRegister,
     login: validateUserLogin,
+    token: validateRefreshToken
 }
