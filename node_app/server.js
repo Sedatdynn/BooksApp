@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const errorJson = require('./utils/error');
 const rateLimiter = require('./api/middleware/rateLimiter');
 const mongoose = require('./api/middleware/db');
@@ -17,8 +16,8 @@ process.on('unhandledRejection', (ex) => {
 });
 
 const PORT = process.env.PORT;
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(rateLimiter);
 app.set('trust proxy', true);
 mongoose.db();
