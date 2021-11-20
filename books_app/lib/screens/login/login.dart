@@ -172,7 +172,7 @@ class _LoginPageState extends State<LoginPage> {
               activeColor: Colors.white,
               onChanged: (value) {
                 setState(() {
-                  _rememberMe = value;
+                  _rememberMe = value!;
                 });
               },
             ),

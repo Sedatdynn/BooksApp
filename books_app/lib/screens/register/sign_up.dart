@@ -9,8 +9,8 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   int _aktifStep = 0;
-  String isim, mail, sifre;
-  List<Step> tumStepler;
+  late String isim, mail, sifre;
+  late List<Step> tumStepler;
   bool hata = false;
 
   var key0 = GlobalKey<FormFieldState>();
@@ -38,7 +38,7 @@ class _SignUpState extends State<SignUp> {
           children: <Widget>[
             Stepper(
               controlsBuilder: (BuildContext context,
-                  {VoidCallback onStepContinue, VoidCallback onStepCancel}) {
+                  {VoidCallback? onStepContinue, VoidCallback? onStepCancel}) {
                 return Row(
                   children: <Widget>[
                     ElevatedButton(
@@ -117,12 +117,12 @@ class _SignUpState extends State<SignUp> {
               hintText: "Enter your Username", border: OutlineInputBorder()),
           // ignore: missing_return
           validator: (entered) {
-            if (entered.length < 6) {
+            if (entered.toString().length < 6) {
               return "Please enter at least 6 characters";
             }
           },
           onSaved: (entered) {
-            isim = entered;
+            isim = entered.toString();
           },
         ),
       ),
@@ -136,12 +136,13 @@ class _SignUpState extends State<SignUp> {
               hintText: "Enter your Email", border: OutlineInputBorder()),
           // ignore: missing_return
           validator: (entered) {
-            if (entered.length < 6 || !entered.contains("@")) {
+            if (entered.toString().length < 6 ||
+                !entered.toString().contains("@")) {
               return "Please enter valid e-mail address";
             }
           },
           onSaved: (entered) {
-            mail = entered;
+            mail = entered!;
           },
         ),
       ),
@@ -155,12 +156,12 @@ class _SignUpState extends State<SignUp> {
               hintText: "Enter your Password", border: OutlineInputBorder()),
           // ignore: missing_return
           validator: (entered) {
-            if (entered.length < 6) {
+            if (entered.toString().length < 6) {
               return "The password should be 6 characters at least!";
             }
           },
           onSaved: (entered) {
-            sifre = entered;
+            sifre = entered.toString();
           },
         ),
       ),
@@ -183,8 +184,8 @@ class _SignUpState extends State<SignUp> {
   void _ileriButonuKontrolu() {
     switch (_aktifStep) {
       case 0:
-        if (key0.currentState.validate()) {
-          key0.currentState.save();
+        if (key0.currentState!.validate()) {
+          key0.currentState!.save();
           hata = false;
           _aktifStep = 1;
         } else {
@@ -193,8 +194,8 @@ class _SignUpState extends State<SignUp> {
         break;
 
       case 1:
-        if (key1.currentState.validate()) {
-          key1.currentState.save();
+        if (key1.currentState!.validate()) {
+          key1.currentState!.save();
           hata = false;
           _aktifStep = 2;
         } else {
@@ -203,8 +204,8 @@ class _SignUpState extends State<SignUp> {
         break;
 
       case 2:
-        if (key2.currentState.validate()) {
-          key2.currentState.save();
+        if (key2.currentState!.validate()) {
+          key2.currentState!.save();
           hata = false;
           _aktifStep = 2;
           formTamamlandi();
