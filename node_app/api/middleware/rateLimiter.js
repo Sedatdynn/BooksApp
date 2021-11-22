@@ -10,7 +10,7 @@ const mongoOpts = {
     useFindAndModify: false
 };
 
-const mongoConn = mongoose.createConnection(process.env.MONGO_DB,mongoOpts);
+const mongoConn = mongoose.createConnection(process.env.DOCKER_DB,mongoOpts);
 
 const opts = {
     storeClient:mongoConn,
