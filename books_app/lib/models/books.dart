@@ -9,6 +9,7 @@ class BookModel {
   String? orginalPrice;
   String? discountPrice;
   String? discountAmount;
+  String? categoryName;
 
   BookModel(
       {required this.bookDetails,
@@ -20,7 +21,8 @@ class BookModel {
       required this.shortInfo,
       required this.orginalPrice,
       required this.discountPrice,
-      required this.discountAmount});
+      required this.discountAmount,
+      required this.categoryName});
 
   BookModel.fromJson(Map<String, dynamic> json) {
     bookDetails = json['book_details'].cast<String>();
@@ -33,6 +35,7 @@ class BookModel {
     orginalPrice = json['orginal_price'];
     discountPrice = json['discount_price'];
     discountAmount = json['discount_amount'];
+    categoryName = json['category_name'];
   }
 
   Map<String, dynamic> toJson() {
@@ -47,6 +50,7 @@ class BookModel {
     data['orginal_price'] = this.orginalPrice;
     data['discount_price'] = this.discountPrice;
     data['discount_amount'] = this.discountAmount;
+    data['category_name'] = this.categoryName;
     return data;
   }
 }
