@@ -80,6 +80,8 @@ const scrapeDetails = async (sourceLinks) => {
             sourceLinks.push( $(elem).attr('href') );
         });
 
+        let category_name = $('.rel-cats__link').find('span').last().text();
+
 
         js_data['image_src'] = image_src
         js_data['book_name'] = book_name
@@ -90,6 +92,11 @@ const scrapeDetails = async (sourceLinks) => {
         js_data['orginal_price'] = orginal_price
         js_data['discount_price'] = discount_price
         js_data['discount_amount'] = discount_amount
+        js_data['category'] = category_name
+
+        if (  await Book.find( { 'book_name' : book_name } ).length >= 1 ){
+            return loop_data["books"]
+        }
 
         loop_data['books'].push( js_data )
        
@@ -110,12 +117,18 @@ module.exports = async (req, res) => {
 
     let bookDetails = await scrapeDetails(sourceLinks);
 
-    const result = await Book.collection.insertMany( bookDetails, { ordered: true } ).catch( (e) => {
-        return res.status(500).errorJson(errorJson(e, 'An interval server error occurred while saving books into db.'))
-    })
+    if (bookDetails.length >= 1) {
 
-    return res.status(200).send( {'msg': result.insertedCount + " documents were inserted."} )
+        const result = await Book.collection.insertMany( bookDetails, { ordered: true } ).catch( (e) => {
+            return res.status(500).errorJson(errorJson(e, 'An interval server error occurred while saving books into db.'))
+        })
 
+
+        return res.status(200).send( {'msg': result.insertedCount + " documents were inserted."} )
+
+    }
+
+    return res.status(200).send( {'msg': "Data already exist in db."} )
 };
 
 /*const test = async () => {
