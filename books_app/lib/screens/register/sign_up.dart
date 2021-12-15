@@ -37,8 +37,7 @@ class _SignUpState extends State<SignUp> {
         child: Column(
           children: <Widget>[
             Stepper(
-              controlsBuilder: (BuildContext context,
-                  {VoidCallback? onStepContinue, VoidCallback? onStepCancel}) {
+              controlsBuilder: (BuildContext context, ControlsDetails control) {
                 return Row(
                   children: <Widget>[
                     ElevatedButton(
@@ -49,7 +48,7 @@ class _SignUpState extends State<SignUp> {
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                         ),
                       ),
-                      onPressed: onStepContinue,
+                      onPressed: control.onStepContinue,
                       child: const Text('continue'),
                     ),
                     SizedBox(
@@ -63,7 +62,7 @@ class _SignUpState extends State<SignUp> {
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                         ),
                       ),
-                      onPressed: onStepCancel,
+                      onPressed: control.onStepCancel,
                       child: const Text('Back'),
                     ),
                   ],

@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 Future<bool> UsersignUp(String username, String email, String password) async {
   //SharedPreferences prefs = await SharedPreferences.getInstance();
-  String url = "http://10.0.2.2:4000/user";
+  String url = "http://10.0.2.2:4000/user/register";
   Map body = {"username": username, "email": email, "password": password};
   print(body);
   var res = await http.Client().post(Uri.parse(url), body: body);
