@@ -5,12 +5,12 @@ In this mobile app  users can authenticate, can see / review  a lot of books and
  
  ## Login Page
  
- <img src="https://i.ibb.co/KLCtqsx/Screenshot-1639999722.png" />
+ <img src="https://i.ibb.co/KLCtqsx/Screenshot-1639999722.png" width="180" height="380" />
 
  <br />
 
  ## Home Page
- <img src="https://i.ibb.co/wz2Xn5s/Screenshot-1639999700.png" />
+ <img src="https://i.ibb.co/wz2Xn5s/Screenshot-1639999700.png" width="180" height="380" />
 
 # Used Technologies
 - Used <b>flutter</b> dart framework for mobile app.
