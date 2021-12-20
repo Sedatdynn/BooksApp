@@ -27,81 +27,102 @@ class _SignUpState extends State<SignUp> {
     tumStepler = _tumStepler();
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Sign Up',
-          style: TextStyle(color: fromCssColor("#CDC7BE")),
+        appBar: AppBar(
+          backgroundColor: Color(0xFF9145B6),
+          title: Text(
+            'Sign Up',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Stepper(
-              controlsBuilder: (BuildContext context, ControlsDetails control) {
-                return Row(
-                  children: <Widget>[
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.teal.shade700,
-                        onPrimary: Colors.white,
-                        shape: const BeveledRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
+        body: Theme(
+          data: ThemeData(
+              backgroundColor: Color(0xFF544179),
+              colorScheme: ColorScheme(
+                  primary: Color(0xFF544179),
+                  background: Colors.white,
+                  onBackground: Color(0xFF544179),
+                  primaryVariant: Color(0xFF544179),
+                  surface: Colors.white,
+                  onError: Color(0xFF544179),
+                  onPrimary: Color(0xFFEDEAF3),
+                  onSecondary: Color(0xFF544179),
+                  error: Colors.red,
+                  secondaryVariant: Colors.red,
+                  onSurface: Colors.red,
+                  secondary: Colors.red,
+                  brightness: Brightness.light)),
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Stepper(
+                  controlsBuilder:
+                      (BuildContext context, ControlsDetails control) {
+                    return Row(
+                      children: <Widget>[
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xFF544179),
+                            onPrimary: Colors.white,
+                            shape: const BeveledRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)),
+                            ),
+                          ),
+                          onPressed: control.onStepContinue,
+                          child: const Text('continue'),
                         ),
-                      ),
-                      onPressed: control.onStepContinue,
-                      child: const Text('continue'),
-                    ),
-                    SizedBox(
-                      width: 30,
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.teal.shade700,
-                        onPrimary: Colors.white,
-                        shape: const BeveledRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                        SizedBox(
+                          width: 30,
                         ),
-                      ),
-                      onPressed: control.onStepCancel,
-                      child: const Text('Back'),
-                    ),
-                  ],
-                );
-              },
-              currentStep: _aktifStep,
-              steps: tumStepler,
-              onStepContinue: () {
-                setState(() {
-                  _ileriButonuKontrolu();
-                });
-              },
-              onStepCancel: () {
-                setState(() {
-                  if (_aktifStep > 0) {
-                    _aktifStep--;
-                  } else {
-                    _aktifStep = 0;
-                  }
-                });
-              },
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xFF544179),
+                            onPrimary: Colors.white,
+                            shape: const BeveledRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)),
+                            ),
+                          ),
+                          onPressed: control.onStepCancel,
+                          child: const Text('Back'),
+                        ),
+                      ],
+                    );
+                  },
+                  currentStep: _aktifStep,
+                  steps: tumStepler,
+                  onStepContinue: () {
+                    setState(() {
+                      _ileriButonuKontrolu();
+                    });
+                  },
+                  onStepCancel: () {
+                    setState(() {
+                      if (_aktifStep > 0) {
+                        _aktifStep--;
+                      } else {
+                        _aktifStep = 0;
+                      }
+                    });
+                  },
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      Future<bool> data = UsersignUp(isim, mail, sifre);
+                      if (data != true) {
+                        print("register error");
+                      } else {
+                        print("register success");
+                      }
+                    },
+                    child: Text("Sign Up"),
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xFF544179),
+                    )),
+              ],
             ),
-            ElevatedButton(
-                onPressed: () {
-                  Future<bool> data = UsersignUp(isim, mail, sifre);
-                  if (data != true) {
-                    print("register error");
-                  } else {
-                    print("register success");
-                  }
-                },
-                child: Text("Sign Up"),
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.teal.shade700,
-                )),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 
   List<Step> _tumStepler() {
@@ -113,7 +134,11 @@ class _SignUpState extends State<SignUp> {
         content: TextFormField(
           key: key0,
           decoration: InputDecoration(
-              hintText: "Enter your Username", border: OutlineInputBorder()),
+            hintText: "Enter your Username",
+            border: OutlineInputBorder(),
+            focusedBorder: _focusBorder(),
+            enabledBorder: _enableBorder(),
+          ),
           // ignore: missing_return
           validator: (entered) {
             if (entered.toString().length < 6) {
@@ -132,7 +157,11 @@ class _SignUpState extends State<SignUp> {
         content: TextFormField(
           key: key1,
           decoration: InputDecoration(
-              hintText: "Enter your Email", border: OutlineInputBorder()),
+            hintText: "Enter your Email",
+            border: OutlineInputBorder(),
+            focusedBorder: _focusBorder(),
+            enabledBorder: _enableBorder(),
+          ),
           // ignore: missing_return
           validator: (entered) {
             if (entered.toString().length < 6 ||
@@ -152,7 +181,11 @@ class _SignUpState extends State<SignUp> {
         content: TextFormField(
           key: key2,
           decoration: InputDecoration(
-              hintText: "Enter your Password", border: OutlineInputBorder()),
+            hintText: "Enter your Password",
+            border: OutlineInputBorder(),
+            focusedBorder: _focusBorder(),
+            enabledBorder: _enableBorder(),
+          ),
           // ignore: missing_return
           validator: (entered) {
             if (entered.toString().length < 6) {
@@ -217,5 +250,19 @@ class _SignUpState extends State<SignUp> {
 
   void formTamamlandi() {
     debugPrint("Girilen değerler : isim=>$isim mail=>$mail şifre=>$sifre");
+  }
+
+  _focusBorder() {
+    return OutlineInputBorder(
+      borderSide: BorderSide(color: Color(0xFF9145B6)),
+      borderRadius: BorderRadius.circular(16.0),
+    );
+  }
+
+  _enableBorder() {
+    return UnderlineInputBorder(
+      borderSide: BorderSide(color: Color(0xFF9145B6)),
+      borderRadius: BorderRadius.circular(16.0),
+    );
   }
 }

@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'BooksApp',
         theme: ThemeData(
-          primaryColor: Colors.teal.shade700,
+          primaryColor: Color(0xFF544179),
         ),
         home: LoginPage());
   }

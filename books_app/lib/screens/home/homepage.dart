@@ -13,6 +13,7 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF9145B6),
       body: SafeArea(
         child: Container(
           child: ListView(
@@ -28,17 +29,17 @@ class _HomepageState extends State<Homepage> {
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
-                            color: Colors.grey),
+                            color: Colors.white),
                       ),
                       SizedBox(
                         height: 7,
                       ),
                       Text(
-                        'Discover Latest Book',
+                        'Discover  Book',
                         style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black),
+                            color: Colors.white),
                       ),
                     ],
                   )),
@@ -56,14 +57,18 @@ class _HomepageState extends State<Homepage> {
                           fontWeight: FontWeight.bold,
                           color: Colors.grey),
                       decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Color(0xFF544179),
                         contentPadding:
                             EdgeInsets.only(left: 19, right: 50, bottom: 8),
-                        border: InputBorder.none,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
                         hintText: 'Search book..',
                         hintStyle: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
-                            color: Colors.grey),
+                            color: Colors.white),
                       ),
                     ),
                     Positioned(
@@ -73,7 +78,7 @@ class _HomepageState extends State<Homepage> {
                             onTap: () {},
                             child: Icon(
                               Icons.search,
-                              color: Colors.grey,
+                              color: Colors.white,
                             ))),
                   ],
                 ),
@@ -91,8 +96,8 @@ class _HomepageState extends State<Homepage> {
                           labelPadding: EdgeInsets.only(left: 25, right: 25),
                           indicatorPadding: EdgeInsets.all(0),
                           isScrollable: true,
-                          labelColor: Colors.black,
-                          unselectedLabelColor: Colors.grey,
+                          labelColor: Colors.white,
+                          unselectedLabelColor: Colors.grey.shade200,
                           labelStyle: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
@@ -101,8 +106,8 @@ class _HomepageState extends State<Homepage> {
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: Colors.black),
-                          indicatorColor: Colors.teal.shade700,
-                          indicatorSize: TabBarIndicatorSize.label,
+                          indicatorColor: Color(0xFF544179),
+                          indicatorSize: TabBarIndicatorSize.tab,
                           tabs: [
                             Tab(
                               child: Container(
@@ -148,12 +153,12 @@ class _HomepageState extends State<Homepage> {
                           height: 210,
                           width: 150,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(40),
-                              color: Colors.white,
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage('assets/book.jpg'),
-                              )),
+                            borderRadius: BorderRadius.circular(40),
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage('assets/book.jpg'),
+                            ),
+                          ),
                         ),
                       );
                     }),
@@ -165,7 +170,7 @@ class _HomepageState extends State<Homepage> {
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
-                      color: Colors.black),
+                      color: Colors.white),
                 ),
               ),
               ListView.builder(
@@ -190,10 +195,12 @@ class _HomepageState extends State<Homepage> {
                         );*/
                       },
                       child: Container(
+                        decoration: BoxDecoration(
+                            color: Color(0xFF544179),
+                            borderRadius: BorderRadius.circular(16.0)),
                         margin: EdgeInsets.only(bottom: 19),
                         height: 81,
                         width: MediaQuery.of(context).size.width - 50,
-                        color: Colors.white,
                         child: Row(
                           children: <Widget>[
                             Container(
@@ -219,7 +226,7 @@ class _HomepageState extends State<Homepage> {
                                   style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w600,
-                                      color: Colors.black),
+                                      color: Colors.white),
                                 ),
                                 SizedBox(
                                   height: 5,
@@ -229,7 +236,7 @@ class _HomepageState extends State<Homepage> {
                                   style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.grey),
+                                      color: Colors.white),
                                 ),
                                 SizedBox(
                                   height: 5,
@@ -239,7 +246,7 @@ class _HomepageState extends State<Homepage> {
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
-                                      color: Colors.black),
+                                      color: Colors.white),
                                 ),
                               ],
                             ),
@@ -247,6 +254,7 @@ class _HomepageState extends State<Homepage> {
                                 padding: EdgeInsets.only(left: 90),
                                 child: Icon(
                                   Icons.arrow_right_outlined,
+                                  color: Colors.white,
                                 ))
                           ],
                         ),
