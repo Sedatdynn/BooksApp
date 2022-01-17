@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:books_app/services/auth/signupService.dart';
 import 'package:flutter/material.dart';
 import 'package:from_css_color/from_css_color.dart';
@@ -55,8 +57,8 @@ class _SignUpState extends State<SignUp> {
             child: Column(
               children: <Widget>[
                 Stepper(
-                  controlsBuilder:
-                      (BuildContext context, ControlsDetails control) {
+                  controlsBuilder: (BuildContext context,
+                      {onStepContinue, onStepCancel}) {
                     return Row(
                       children: <Widget>[
                         ElevatedButton(
@@ -68,7 +70,7 @@ class _SignUpState extends State<SignUp> {
                                   BorderRadius.all(Radius.circular(5)),
                             ),
                           ),
-                          onPressed: control.onStepContinue,
+                          onPressed: onStepContinue,
                           child: const Text('continue'),
                         ),
                         SizedBox(
@@ -83,7 +85,7 @@ class _SignUpState extends State<SignUp> {
                                   BorderRadius.all(Radius.circular(5)),
                             ),
                           ),
-                          onPressed: control.onStepCancel,
+                          onPressed: () => onStepCancel,
                           child: const Text('Back'),
                         ),
                       ],
